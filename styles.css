@@ -1005,7 +1005,150 @@ textarea {
     font-size: 13px;
   }
 
-  textarea {
+textarea {
     min-height: 220px;
+  }
+}
+
+.detail-page {
+  background: var(--white);
+}
+
+.detail-header {
+  border-bottom: 1px solid rgba(231, 224, 245, 0.72);
+}
+
+.detail-nav {
+  width: min(var(--maxw), calc(100% - 56px));
+  min-height: 88px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.detail-nav .nav-brand {
+  color: var(--ink);
+}
+
+.detail-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.concert-detail-main {
+  padding: 82px 0 118px;
+}
+
+.concert-detail {
+  width: min(1040px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1fr);
+  align-items: center;
+  gap: 58px 72px;
+}
+
+.detail-copy h1 {
+  margin-bottom: 26px;
+  color: var(--lav-600);
+  font-size: clamp(36px, 4vw, 54px);
+}
+
+.detail-copy p {
+  margin-bottom: 28px;
+  color: #706a78;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.48;
+}
+
+.detail-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.detail-copy-secondary {
+  padding-top: 12px;
+}
+
+.detail-media {
+  margin: 0;
+  padding: 20px;
+  border: 1px solid #d6cedf;
+  background: var(--white);
+  box-shadow: 0 22px 48px -38px rgba(36, 31, 48, 0.48);
+}
+
+.detail-media img {
+  width: 100%;
+  aspect-ratio: 1.08;
+  object-fit: cover;
+}
+
+.detail-media-tall img {
+  aspect-ratio: 0.92;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.detail-actions .button {
+  min-width: 210px;
+}
+
+.detail-footer {
+  margin-top: 0;
+}
+
+@media (max-width: 820px) {
+  .detail-nav {
+    width: min(100% - 36px, var(--maxw));
+  }
+
+  .detail-nav-actions {
+    gap: 12px;
+  }
+
+  .concert-detail-main {
+    padding: 58px 0 78px;
+  }
+
+  .concert-detail {
+    width: min(100% - 36px, 620px);
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .detail-media {
+    padding: 14px;
+  }
+
+  .detail-copy p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .detail-nav {
+    min-height: 78px;
+  }
+
+  .detail-nav-actions .nav-link {
+    display: none;
+  }
+
+  .detail-actions .button {
+    min-width: 100%;
   }
 }
