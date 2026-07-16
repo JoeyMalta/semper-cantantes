@@ -1313,6 +1313,294 @@ textarea {
   }
 }
 
+.hero-logo {
+  width: 54px;
+  height: auto;
+  margin-bottom: 18px;
+  opacity: 0.66;
+}
+
+.hero-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  gap: 18px 28px;
+  max-width: 720px;
+}
+
+.hero-details div {
+  min-width: 0;
+}
+
+.hero-details dt {
+  margin-bottom: 2px;
+  color: var(--lav-700);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-details dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero-kicker span {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  min-height: 0;
+  backdrop-filter: none;
+}
+
+.upcoming-concert {
+  max-width: 720px;
+}
+
+.concert-card-featured {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(280px, 1fr);
+}
+
+.concert-card-featured .concert-image img {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.concert-card-featured .concert-body p {
+  min-height: 0;
+}
+
+.about-photo {
+  overflow: hidden;
+  margin: 0 0 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--lav-100);
+  box-shadow: 0 22px 52px -38px rgba(95, 63, 160, 0.42);
+}
+
+.about-photo img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 45% center;
+}
+
+.team-section {
+  padding: 108px 0 116px;
+  background:
+    radial-gradient(54% 70% at 82% 12%, rgba(203, 182, 239, 0.22), transparent 62%),
+    var(--bg-soft);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.team-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: 0 26px 62px -40px rgba(95, 63, 160, 0.4);
+}
+
+.team-image {
+  min-height: 360px;
+  background: var(--lav-100);
+}
+
+.team-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  object-position: 45% center;
+}
+
+.team-image-placeholder {
+  display: grid;
+  place-items: center;
+  padding: 38px;
+  color: var(--lav-700);
+  background:
+    radial-gradient(70% 70% at 50% 25%, rgba(203, 182, 239, 0.45), transparent 72%),
+    var(--lav-100);
+}
+
+.team-image-placeholder img {
+  width: 92px;
+  height: auto;
+  min-height: 0;
+  opacity: 0.45;
+  object-fit: contain;
+}
+
+.team-image-placeholder span {
+  display: block;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.team-copy {
+  padding: 32px;
+}
+
+.team-copy h3 {
+  margin-bottom: 18px;
+  color: #565167;
+  font-size: clamp(26px, 3vw, 34px);
+}
+
+.team-copy p:not(.eyebrow) {
+  margin-bottom: 15px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.72;
+}
+
+.previous-section {
+  padding: 98px 0 104px;
+  background: var(--white);
+}
+
+.previous-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.previous-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #ffffff, #fbf9ff);
+  box-shadow: 0 20px 48px -38px rgba(95, 63, 160, 0.35);
+}
+
+.previous-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--lav-700);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.previous-card h3 {
+  margin-bottom: 12px;
+  color: #565167;
+  font-size: 24px;
+}
+
+.previous-card p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.legal-page {
+  background: linear-gradient(180deg, var(--white), #fbf9ff);
+}
+
+.legal-main {
+  width: min(860px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 70px 0 96px;
+}
+
+.legal-main h1 {
+  color: var(--lav-600);
+  font-size: clamp(36px, 5vw, 58px);
+}
+
+.legal-main h2 {
+  margin: 34px 0 12px;
+  font-size: 24px;
+}
+
+.legal-main p,
+.legal-main li {
+  color: var(--ink-soft);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.legal-main ul {
+  padding-left: 20px;
+}
+
+@media (max-width: 1000px) {
+  .concert-card-featured,
+  .team-grid,
+  .previous-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .upcoming-concert {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-logo {
+    width: 42px;
+    margin-bottom: 14px;
+  }
+
+  .hero-details {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .hero-details dt {
+    font-size: 10px;
+  }
+
+  .hero-details dd {
+    font-size: 13px;
+  }
+
+  .team-section,
+  .previous-section {
+    padding: 58px 0;
+  }
+
+  .team-grid,
+  .previous-grid {
+    gap: 18px;
+  }
+
+  .team-image,
+  .team-image img {
+    min-height: 280px;
+  }
+
+  .team-copy,
+  .previous-card {
+    padding: 22px;
+  }
+
+  .mobile-socials {
+    display: none;
+  }
+
+  .legal-main {
+    width: min(100% - 32px, 520px);
+    padding: 48px 0 72px;
+  }
+}
+
 .detail-page {
   background: var(--white);
 }
