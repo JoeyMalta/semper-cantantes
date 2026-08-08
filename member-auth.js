@@ -1,18 +1,20 @@
 (() => {
   const SESSION_KEY = "semper-cantantes-member-session";
-  const ACCOUNT_KEY = "semper-cantantes-demo-account";
-  const LEGACY_DEMO_EMAIL = "cybille@sempercantantes.nl";
+  const LEGACY_ACCOUNT_KEY = "semper-cantantes-demo-account";
+  const MEMBER_ID = "sibylle";
+
+  // Prototype only: production member data must be delivered by a backend with
+  // real server-side authentication. Client-side code cannot protect embedded data.
   const DEMO_ACCOUNT = {
     name: "Sibylle",
-    email: "sibylle@sempercantantes.nl",
-    password: "semper1957",
+    username: "Sibylle",
+    password: "Knechtshuis2024?!",
   };
 
   const loginDialog = document.querySelector("#login-demo");
   const loginForm = loginDialog?.querySelector("[data-login-form]");
-  const registerForm = loginDialog?.querySelector("[data-register-form]");
+  const registrationPanel = loginDialog?.querySelector("[data-register-panel]");
   const loginMessage = loginDialog?.querySelector("[data-login-message]");
-  const registerMessage = loginDialog?.querySelector("[data-register-message]");
   const feedback = document.querySelector("[data-site-feedback]");
   let loginTrigger = null;
   let feedbackTimer = null;
@@ -40,44 +42,36 @@
     try {
       window.localStorage.removeItem(key);
     } catch {
-      // The current page still logs out through the in-memory fallback.
+      // The page can still use the in-memory session fallback.
     }
   };
 
   const getSession = () => {
-    const session = readStoredValue(SESSION_KEY) || memorySession;
-    if (!session || typeof session.name !== "string" || typeof session.email !== "string") {
-      return null;
+    const storedSession = readStoredValue(SESSION_KEY) || memorySession;
+    const isCurrentSession = storedSession?.member === MEMBER_ID;
+    const isLegacySession = storedSession?.name === "Sibylle"
+      && storedSession?.email === "sibylle@sempercantantes.nl";
+
+    if (!isCurrentSession && !isLegacySession) return null;
+
+    if (!isCurrentSession) {
+      memorySession = { member: MEMBER_ID };
+      storeValue(SESSION_KEY, memorySession);
     }
-    if (session.email === LEGACY_DEMO_EMAIL) {
-      const correctedSession = { name: DEMO_ACCOUNT.name, email: DEMO_ACCOUNT.email };
-      memorySession = correctedSession;
-      storeValue(SESSION_KEY, correctedSession);
-      return correctedSession;
-    }
-    return session;
+
+    return { member: MEMBER_ID, name: DEMO_ACCOUNT.name };
   };
 
-  const saveSession = (session) => {
-    memorySession = session;
-    return storeValue(SESSION_KEY, session);
+  const saveSession = () => {
+    memorySession = { member: MEMBER_ID };
+    return storeValue(SESSION_KEY, memorySession);
   };
 
   const clearSession = () => {
     memorySession = null;
     removeStoredValue(SESSION_KEY);
+    removeStoredValue(LEGACY_ACCOUNT_KEY);
   };
-
-  const hashPassword = async (password) => {
-    if (!window.crypto?.subtle) return `demo-${password}`;
-    const bytes = new TextEncoder().encode(password);
-    const digest = await window.crypto.subtle.digest("SHA-256", bytes);
-    return [...new Uint8Array(digest)]
-      .map((byte) => byte.toString(16).padStart(2, "0"))
-      .join("");
-  };
-
-  const firstName = (name) => name.trim().split(/\s+/)[0] || "lid";
 
   const showFeedback = (message) => {
     if (!feedback) return;
@@ -93,14 +87,8 @@
     feedback.setAttribute("hidden", "");
   };
 
-  const setAuthMessage = (element, message) => {
-    if (element) element.textContent = message;
-  };
-
-  const setButtonBusy = (button, busy, busyLabel, defaultLabel) => {
-    if (!button) return;
-    button.disabled = busy;
-    button.textContent = busy ? busyLabel : defaultLabel;
+  const setAuthMessage = (message) => {
+    if (loginMessage) loginMessage.textContent = message;
   };
 
   const updateMemberPage = (session) => {
@@ -110,13 +98,11 @@
 
     content.toggleAttribute("hidden", !session);
     accessMessage.toggleAttribute("hidden", Boolean(session));
-    document.querySelectorAll("[data-birthday-name]").forEach((element) => {
-      element.textContent = session ? firstName(session.name) : "lid";
-    });
   };
 
   const updateNavigation = () => {
     const session = getSession();
+
     document.querySelectorAll("[data-member-logged-out]").forEach((element) => {
       element.toggleAttribute("hidden", Boolean(session));
     });
@@ -125,8 +111,9 @@
       if (!session) profile.removeAttribute("open");
     });
     document.querySelectorAll("[data-member-display-name]").forEach((element) => {
-      element.textContent = session ? firstName(session.name) : "lid";
+      element.textContent = session ? DEMO_ACCOUNT.name : "lid";
     });
+
     updateMemberPage(session);
     return session;
   };
@@ -134,24 +121,22 @@
   const setAuthMode = (mode) => {
     const showLogin = mode === "login";
     loginForm?.toggleAttribute("hidden", !showLogin);
-    registerForm?.toggleAttribute("hidden", showLogin);
+    registrationPanel?.toggleAttribute("hidden", showLogin);
     loginDialog?.querySelectorAll("[data-auth-mode]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.authMode === mode));
     });
-    setAuthMessage(loginMessage, "");
-    setAuthMessage(registerMessage, "");
+    setAuthMessage("");
 
     window.setTimeout(() => {
       const target = showLogin
-        ? loginDialog?.querySelector("#member-email")
-        : loginDialog?.querySelector("#register-name");
+        ? loginDialog?.querySelector("#member-username")
+        : loginDialog?.querySelector("#registration-title");
       target?.focus();
     });
   };
 
   const resetDialog = () => {
     loginForm?.reset();
-    registerForm?.reset();
     setAuthMode("login");
   };
 
@@ -161,7 +146,7 @@
     loginTrigger = trigger;
     loginDialog.removeAttribute("hidden");
     document.body.classList.add("has-open-dialog");
-    loginDialog.querySelector("#member-email")?.focus();
+    loginDialog.querySelector("#member-username")?.focus();
   };
 
   const closeLogin = ({ restoreFocus = true } = {}) => {
@@ -172,25 +157,26 @@
     if (restoreFocus) loginTrigger?.focus();
   };
 
-  const focusVisibleProfile = () => {
+  const focusMemberControl = () => {
     const visibleProfile = [...document.querySelectorAll("[data-member-profile] summary")]
       .find((element) => element.offsetParent !== null);
-    visibleProfile?.focus();
+    const visibleMobileMenu = [...document.querySelectorAll(".mobile-nav > summary")]
+      .find((element) => element.offsetParent !== null);
+    (visibleProfile || visibleMobileMenu)?.focus();
   };
 
-  const finishAuthentication = (session, message, errorTarget) => {
-    if (!saveSession(session)) {
+  const finishAuthentication = () => {
+    if (!saveSession()) {
       setAuthMessage(
-        errorTarget,
         "Uw browser kan de inlogstatus niet bewaren. Controleer de privacy-instellingen en probeer opnieuw."
       );
-      return false;
+      return;
     }
+
     closeLogin({ restoreFocus: false });
     updateNavigation();
-    showFeedback(message);
-    focusVisibleProfile();
-    return true;
+    showFeedback("U bent ingelogd. Welkom Sibylle.");
+    focusMemberControl();
   };
 
   document.querySelectorAll("[data-login-demo]").forEach((button) => {
@@ -208,101 +194,44 @@
     button.addEventListener("click", () => setAuthMode(button.dataset.authMode));
   });
 
-  loginForm?.addEventListener("submit", async (event) => {
+  loginForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    setAuthMessage(loginMessage, "");
+    setAuthMessage("");
 
     if (!loginForm.checkValidity()) {
-      setAuthMessage(loginMessage, "Vul uw e-mailadres en wachtwoord in.");
+      setAuthMessage("Vul uw gebruikersnaam en wachtwoord in.");
       loginForm.reportValidity();
       return;
     }
 
-    const submitButton = loginForm.querySelector("button[type='submit']");
     const formData = new FormData(loginForm);
-    const email = String(formData.get("email") || "").trim().toLowerCase();
+    const username = String(formData.get("username") || "").trim();
     const password = String(formData.get("password") || "");
-    setButtonBusy(submitButton, true, "Controleren...", "Inloggen");
+    const isDemoAccount = username.toLocaleLowerCase("nl") === DEMO_ACCOUNT.username.toLocaleLowerCase("nl")
+      && password === DEMO_ACCOUNT.password;
 
-    const registeredAccount = readStoredValue(ACCOUNT_KEY);
-    const passwordHash = await hashPassword(password);
-    const isDemoAccount = email === DEMO_ACCOUNT.email && password === DEMO_ACCOUNT.password;
-    const isRegisteredAccount = registeredAccount
-      && email === registeredAccount.email
-      && passwordHash === registeredAccount.passwordHash;
-
-    if (isDemoAccount) {
-      finishAuthentication(
-        { name: DEMO_ACCOUNT.name, email: DEMO_ACCOUNT.email },
-        "U bent ingelogd. Welkom Sibylle.",
-        loginMessage
-      );
-    } else if (isRegisteredAccount) {
-      finishAuthentication(
-        { name: registeredAccount.name, email: registeredAccount.email },
-        `U bent ingelogd. Welkom ${firstName(registeredAccount.name)}.`,
-        loginMessage
-      );
-    } else {
-      setAuthMessage(loginMessage, "Het e-mailadres of wachtwoord klopt niet. Probeer het opnieuw.");
-    }
-
-    setButtonBusy(submitButton, false, "Controleren...", "Inloggen");
-  });
-
-  registerForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    setAuthMessage(registerMessage, "");
-
-    if (!registerForm.checkValidity()) {
-      setAuthMessage(registerMessage, "Vul alle velden volledig in. Gebruik minimaal 8 tekens voor het wachtwoord.");
-      registerForm.reportValidity();
+    if (!isDemoAccount) {
+      setAuthMessage("De gebruikersnaam of het wachtwoord klopt niet. Probeer het opnieuw.");
       return;
     }
 
-    const submitButton = registerForm.querySelector("button[type='submit']");
-    const formData = new FormData(registerForm);
-    const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim().toLowerCase();
-    const password = String(formData.get("password") || "");
-    const passwordConfirm = String(formData.get("password-confirm") || "");
-
-    if (name.length < 2) {
-      setAuthMessage(registerMessage, "Vul een naam van minimaal 2 tekens in.");
-      return;
-    }
-    if (password !== passwordConfirm) {
-      setAuthMessage(registerMessage, "De twee wachtwoorden zijn niet hetzelfde.");
-      return;
-    }
-    if (email === DEMO_ACCOUNT.email) {
-      setAuthMessage(registerMessage, "Dit e-mailadres hoort al bij het demo-account van Sibylle.");
-      return;
-    }
-
-    setButtonBusy(submitButton, true, "Account aanmaken...", "Account aanmaken");
-    const account = { name, email, passwordHash: await hashPassword(password) };
-
-    if (!storeValue(ACCOUNT_KEY, account)) {
-      setAuthMessage(registerMessage, "Uw browser kan dit demo-account niet bewaren. Controleer de privacy-instellingen.");
-      setButtonBusy(submitButton, false, "Account aanmaken...", "Account aanmaken");
-      return;
-    }
-
-    finishAuthentication(
-      { name: account.name, email: account.email },
-      `Uw demo-account is aangemaakt. Welkom ${firstName(account.name)}.`,
-      registerMessage
-    );
-    setButtonBusy(submitButton, false, "Account aanmaken...", "Account aanmaken");
+    finishAuthentication();
   });
 
   document.querySelectorAll("[data-member-logout]").forEach((button) => {
     button.addEventListener("click", () => {
       clearSession();
-      document.querySelectorAll("[data-member-profile]").forEach((profile) => profile.removeAttribute("open"));
+      document.querySelectorAll("[data-member-profile]").forEach((profile) => {
+        profile.removeAttribute("open");
+      });
       document.querySelectorAll(".mobile-nav").forEach((menu) => menu.removeAttribute("open"));
       updateNavigation();
+
+      if (document.body.matches("[data-member-page]")) {
+        window.location.assign("index.html");
+        return;
+      }
+
       showFeedback("U bent uitgelogd.");
       const visibleLogin = [...document.querySelectorAll("[data-member-logged-out]")]
         .find((element) => element.offsetParent !== null);
@@ -310,18 +239,20 @@
     });
   });
 
-  document.querySelectorAll("[data-member-profile]").forEach((profile) => {
+  document.querySelectorAll("details[data-member-profile]").forEach((profile) => {
     profile.addEventListener("toggle", () => {
       if (!profile.open) return;
-      document.querySelectorAll("[data-member-profile]").forEach((otherProfile) => {
+      document.querySelectorAll("details[data-member-profile]").forEach((otherProfile) => {
         if (otherProfile !== profile) otherProfile.removeAttribute("open");
       });
     });
   });
 
   document.addEventListener("click", (event) => {
-    if (!event.target.closest("[data-member-profile]")) {
-      document.querySelectorAll("[data-member-profile]").forEach((profile) => profile.removeAttribute("open"));
+    if (!event.target.closest("details[data-member-profile]")) {
+      document.querySelectorAll("details[data-member-profile]").forEach((profile) => {
+        profile.removeAttribute("open");
+      });
     }
   });
 
@@ -348,5 +279,6 @@
     }
   });
 
+  removeStoredValue(LEGACY_ACCOUNT_KEY);
   updateNavigation();
 })();

@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500;1,9..144,650&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=member-flow-20260808">
+    <link rel="stylesheet" href="styles.css?v=final-refinement-20260808">
   </head>
   <body data-version="client-round-20260716">
     <!-- Hero and primary navigation -->
@@ -45,13 +45,14 @@
             >
               Login
             </button>
-            <details class="member-profile" data-member-profile hidden>
-              <summary>Welkom <span data-member-display-name>Sibylle</span></summary>
-              <div class="member-profile-menu">
-                <a href="verjaardagen.html">Verjaardagen</a>
-                <button type="button" data-member-logout>Uitloggen</button>
-              </div>
-            </details>
+            <div class="mobile-member-area" data-member-profile hidden>
+              <p>
+                <span class="member-avatar" aria-hidden="true">S</span>
+                Welkom <strong data-member-display-name>Sibylle</strong>
+              </p>
+              <a href="verjaardagen.html">Verjaardagen</a>
+              <button type="button" data-member-logout>Uitloggen</button>
+            </div>
           </div>
         </details>
         <div class="nav-links">
@@ -72,7 +73,10 @@
             Login
           </button>
           <details class="member-profile" data-member-profile hidden>
-            <summary>Welkom <span data-member-display-name>Sibylle</span></summary>
+            <summary>
+              <span class="member-avatar" aria-hidden="true">S</span>
+              <span>Welkom <strong data-member-display-name>Sibylle</strong></span>
+            </summary>
             <div class="member-profile-menu">
               <a href="verjaardagen.html">Verjaardagen</a>
               <button type="button" data-member-logout>Uitloggen</button>
@@ -126,8 +130,8 @@
             <article class="concert-card concert-card-featured">
               <div class="concert-image">
                 <img
-                  src="assets/najaarsconcert-2026.jpeg"
-                  alt="Affiche van het Najaarsconcert van Semper Cantantes op 7 november 2026"
+                  src="assets/najaarsconcert-card.jpg"
+                  alt="Licht kerkinterieur met blauwe gewelven voor het Najaarsconcert"
                 >
               </div>
               <div class="concert-body">
@@ -222,7 +226,7 @@
             <article class="team-card">
               <div class="team-image team-image-faina">
                 <img
-                  src="assets/faina-ivanov-aptekar.jpeg"
+                  src="assets/faina-ivanov-aptekar-crop.jpeg"
                   alt="Pianist Faina Ivanov-Aptekar"
                 >
               </div>
@@ -349,8 +353,7 @@
           <p class="eyebrow">Ledenomgeving</p>
           <h2 id="login-demo-title">Welkom</h2>
           <p class="auth-intro">
-            Log in met het demo-account van Sibylle, of maak op dit apparaat
-            een eigen demo-account aan.
+            Log in met uw gebruikersnaam en wachtwoord.
           </p>
 
           <div class="auth-switch" aria-label="Kies inloggen of registreren">
@@ -359,9 +362,9 @@
           </div>
 
           <form class="auth-form" data-login-form novalidate>
-            <label for="member-email">
-              E-mailadres
-              <input id="member-email" type="email" name="email" autocomplete="email" required>
+            <label for="member-username">
+              Gebruikersnaam
+              <input id="member-username" type="text" name="username" autocomplete="username" required>
             </label>
             <label for="member-password">
               Wachtwoord
@@ -373,52 +376,20 @@
                 required
               >
             </label>
-            <p class="demo-credentials">
-              Demo: <strong>sibylle@sempercantantes.nl</strong> met wachtwoord
-              <strong>semper1957</strong>
-            </p>
             <p class="auth-message" data-login-message role="alert"></p>
             <button class="button button-primary" type="submit">Inloggen</button>
           </form>
 
-          <form class="auth-form" data-register-form hidden novalidate>
-            <label for="register-name">
-              Naam
-              <input id="register-name" type="text" name="name" autocomplete="name" required>
-            </label>
-            <label for="register-email">
-              E-mailadres
-              <input id="register-email" type="email" name="email" autocomplete="email" required>
-            </label>
-            <label for="register-password">
-              Wachtwoord
-              <input
-                id="register-password"
-                type="password"
-                name="password"
-                autocomplete="new-password"
-                minlength="8"
-                required
-              >
-            </label>
-            <label for="register-password-confirm">
-              Herhaal wachtwoord
-              <input
-                id="register-password-confirm"
-                type="password"
-                name="password-confirm"
-                autocomplete="new-password"
-                minlength="8"
-                required
-              >
-            </label>
-            <p class="auth-message" data-register-message role="alert"></p>
-            <button class="button button-primary" type="submit">Account aanmaken</button>
-          </form>
+          <div class="registration-message" data-register-panel hidden>
+            <h3 id="registration-title" tabindex="-1">Registreren</h3>
+            <p>
+              Registreren is in deze demonstratie nog niet beschikbaar. In een
+              toekomstige ledenomgeving worden accounts door Semper Cantantes beheerd.
+            </p>
+          </div>
 
           <p class="login-demo-note">
-            Deze demo bewaart alleen uw demo-account en inlogstatus in deze
-            browser. Voor echte ledengegevens is een beveiligde backend nodig.
+            Deze demonstratie bewaart alleen de inlogstatus in deze browser.
           </p>
         </section>
       </div>
@@ -430,8 +401,11 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <p class="brand-script">Semper</p>
-          <strong>Cantantes</strong>
+          <img class="footer-logo" src="assets/semper-logo.png" alt="">
+          <div>
+            <p class="brand-script">Semper</p>
+            <strong>Cantantes</strong>
+          </div>
           <span>Vrouwenkoor voor klassieke wereldlijke en kerkelijke muziek.</span>
           <span>KvK 24341520</span>
         </div>
@@ -461,6 +435,6 @@
       }
 
     </script>
-    <script src="member-auth.js?v=member-flow-20260808b"></script>
+    <script src="member-auth.js?v=final-refinement-20260808"></script>
   </body>
 </html>
