@@ -11,17 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500;1,9..144,650&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500;1,9..144,650&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=client-round-20260716">
+    <link rel="stylesheet" href="styles.css?v=homepage-content-20260808">
   </head>
   <body data-version="client-round-20260716">
+    <!-- Hero and primary navigation -->
     <header class="hero" id="home">
       <nav class="site-nav" aria-label="Hoofdnavigatie">
         <a class="nav-brand" href="#home" aria-label="Semper Cantantes home">
-          <span>Semper</span>
-          <strong>Cantantes</strong>
+          <img src="assets/semper-logo.png" alt="">
+          <span>Semper Cantantes</span>
         </a>
         <details class="mobile-nav">
           <summary aria-label="Open menu">
@@ -29,33 +30,46 @@
             <i aria-hidden="true"></i>
           </summary>
           <div class="mobile-nav-panel">
-            <a class="nav-link" href="#over-ons">Over ons</a>
             <a class="nav-link" href="#concerten">Programma</a>
+            <a class="nav-link" href="#over-ons">Over ons</a>
             <a class="nav-link" href="#team">Dirigent & pianist</a>
             <a class="nav-link" href="#eerdere-concerten">Eerdere concerten</a>
             <a class="nav-link" href="#contact">Contact</a>
-            <a class="login-link" href="#">Login</a>
+            <button
+              class="login-link"
+              type="button"
+              disabled
+              title="Binnenkort beschikbaar"
+            >
+              Login
+            </button>
           </div>
         </details>
         <div class="nav-links">
-          <a class="nav-link" href="#over-ons">Over ons</a>
           <a class="nav-link" href="#concerten">Programma</a>
+          <a class="nav-link" href="#over-ons">Over ons</a>
           <a class="nav-link" href="#team">Dirigent & pianist</a>
           <a class="nav-link" href="#contact">Contact</a>
         </div>
         <div class="nav-actions">
-          <a class="login-link" href="#">Login</a>
+          <button
+            class="login-link"
+            type="button"
+            disabled
+            title="Binnenkort beschikbaar"
+          >
+            Login
+          </button>
         </div>
       </nav>
 
       <div class="hero-content">
-        <img class="hero-logo" src="assets/semper-logo.png" alt="Logo Semper Cantantes">
+        <p class="brand-script">Semper</p>
+        <h1>Cantantes</h1>
         <div class="hero-kicker">
           <span>Vrouwenkoor</span>
           <span>Sinds 1957</span>
         </div>
-        <p class="brand-script">Semper</p>
-        <h1>Cantantes</h1>
         <p class="hero-copy">
           Klassieke wereldlijke en kerkelijke koormuziek met aandacht voor
           samenzang, tekst en een verzorgde koorklank.
@@ -67,7 +81,7 @@
         <dl class="hero-details" aria-label="Kerngegevens Semper Cantantes">
           <div>
             <dt>Leden</dt>
-            <dd>ongeveer 25</dd>
+            <dd>25</dd>
           </div>
           <div>
             <dt>Repetitie</dt>
@@ -81,7 +95,8 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
+      <!-- Upcoming concerts -->
       <section class="concert-section" id="concerten" aria-labelledby="concerten-title">
         <div class="section-inner">
           <div class="section-heading">
@@ -89,56 +104,102 @@
             <h2 id="concerten-title">Aankomend concert</h2>
           </div>
 
-          <div class="upcoming-concert">
-            <article class="concert-card concert-card-featured">
+          <div class="concert-grid upcoming-concerts">
+            <article class="concert-card">
               <div class="concert-image">
                 <img src="assets/concert-winter.png" alt="Bladmuziek met lavendel in warm najaarslicht">
-                <div class="concert-date">7 november 2026 <span></span> 15:00</div>
+                <time class="concert-date" datetime="2026-11-07T14:30">
+                  7 november 2026 <span aria-hidden="true"></span> 14:30
+                </time>
               </div>
               <div class="concert-body">
-                <p class="eyebrow">Voorlopige titel</p>
+                <p class="eyebrow">Termaat Huis, Rotterdam</p>
                 <h3>Najaarsconcert</h3>
                 <p>
-                  Het eerstvolgende concert staat gepland op zaterdag 7
-                  november 2026 om 15:00. De definitieve titel en het programma
-                  worden later bekendgemaakt.
+                  Een middag met muziek van H&auml;ndel, Elgar en Mozart, met
+                  Tessa Maalcke, Faina Ivanov-Aptekar en bariton Guyon Mingelen.
                 </p>
                 <a class="small-button" href="concert.html">Meer informatie</a>
+              </div>
+            </article>
+
+            <article class="concert-card concert-card-expected">
+              <div class="concert-image">
+                <img src="assets/concert-voorjaar.png" alt="Bladmuziek met lichte lavendelkleuren">
+                <p class="concert-date">Wordt verwacht</p>
+              </div>
+              <div class="concert-body">
+                <p class="eyebrow">Binnenkort meer</p>
+                <h3>Wordt verwacht</h3>
+                <p>Nieuwe concertinformatie wordt hier bekendgemaakt zodra deze beschikbaar is.</p>
+                <span class="small-button small-button-disabled">Informatie volgt</span>
+              </div>
+            </article>
+
+            <article class="concert-card concert-card-expected">
+              <div class="concert-image">
+                <img src="assets/concert-zomer.png" alt="Bladmuziek met lavendel in zacht licht">
+                <p class="concert-date">Wordt verwacht</p>
+              </div>
+              <div class="concert-body">
+                <p class="eyebrow">Binnenkort meer</p>
+                <h3>Wordt verwacht</h3>
+                <p>Nieuwe concertinformatie wordt hier bekendgemaakt zodra deze beschikbaar is.</p>
+                <span class="small-button small-button-disabled">Informatie volgt</span>
               </div>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- Choir introduction -->
       <section class="about-section" id="over-ons" aria-labelledby="over-title">
         <div class="section-inner about-grid">
           <div class="about-heading">
             <p class="eyebrow">Over ons</p>
             <h2 id="over-title">Een vrouwenkoor met geschiedenis</h2>
+            <dl class="about-facts" aria-label="Kerngegevens over Semper Cantantes">
+              <div>
+                <dt>1957</dt>
+                <dd>opgericht</dd>
+              </div>
+              <div>
+                <dt>25</dt>
+                <dd>leden</dd>
+              </div>
+              <div>
+                <dt>Donderdag</dt>
+                <dd>10:00 - 12:15</dd>
+              </div>
+            </dl>
+            <a class="button button-outline about-history-link" href="geschiedenis.html">
+              Bekijk onze tijdlijn
+            </a>
           </div>
           <div class="about-copy">
             <figure class="about-photo">
               <img src="assets/koor-trapfoto.jpeg" alt="Leden van Semper Cantantes op de trap">
             </figure>
             <p>
-              Semper Cantantes bestaat sinds 1957 en telt op dit moment
-              ongeveer 25 leden. Het repertoire is klassiek en bestaat uit
-              wereldlijke en kerkelijke muziek.
+              Semper Cantantes werd in 1957 opgericht. Het koor ontstond uit
+              een groep vrouwen van medisch specialisten die rond Kerstmis
+              zongen voor pati&euml;nten van het toenmalige Havenziekenhuis.
+            </p>
+            <p>
+              Vandaag telt het koor ongeveer 25 leden. Het klassieke repertoire
+              bestaat uit wereldlijke en kerkelijke muziek, met veel aandacht
+              voor samenzang en een verzorgde koorklank.
             </p>
             <p>
               Nieuwe leden zijn van harte welkom om vrijblijvend een repetitie
               bij te wonen op donderdagmorgen van 10:00 - 12:15 uur in de
               Hoflaankerk.
             </p>
-            <div class="about-facts" aria-label="Kerngegevens over Semper Cantantes">
-              <span><strong>1957</strong> opgericht</span>
-              <span><strong>25</strong> leden</span>
-              <span><strong>10:00 - 12:15</strong> donderdag</span>
-            </div>
           </div>
         </div>
       </section>
 
+      <!-- Musical direction -->
       <section class="team-section" id="team" aria-labelledby="team-title">
         <div class="section-inner">
           <div class="section-heading">
@@ -161,17 +222,23 @@
                 </p>
                 <p>
                   Haar repertoire omvat onder meer de Johannes Passion van
-                  Bach, The Messiah van Händel, het Gloria van Vivaldi en The
-                  Armed Man van Karl Jenkins. Daarnaast is zij actief als
-                  dirigent en geeft zij koorcoaching.
+                  Bach, The Messiah van H&auml;ndel, het Gloria van Vivaldi en
+                  The Armed Man van Karl Jenkins.
+                </p>
+                <p>
+                  Naast haar werk als solist en ervaren koorzanger dirigeert
+                  Tessa koren in uiteenlopende genres. Ook geeft zij
+                  koorcoaching aan verschillende Nederlandse koren.
                 </p>
               </div>
             </article>
 
             <article class="team-card">
-              <div class="team-image team-image-placeholder">
-                <img src="assets/semper-logo.png" alt="" aria-hidden="true">
-                <span>Foto volgt</span>
+              <div class="team-image team-image-faina">
+                <img
+                  src="assets/faina-ivanov-aptekar.jpeg"
+                  alt="Pianist Faina Ivanov-Aptekar"
+                >
               </div>
               <div class="team-copy">
                 <p class="eyebrow">Vaste pianist sinds 2010</p>
@@ -179,12 +246,14 @@
                 <p>
                   Faina startte haar studie piano en muziektheorie aan het
                   conservatorium in Oezbekistan en sloot deze cum laude af.
-                  Zij werkte ook als muziekpedagoog.
+                  Daarna werkte zij als muziekpedagoog en begeleidster van
+                  verschillende muziekscholen.
                 </p>
                 <p>
-                  Als begeleidster won zij diverse prijzen en werkte zij sinds
-                  1993 in Nederland met verschillende muziekgezelschappen. Ook
-                  begeleidt zij jonge mensen op weg naar het concertpodium.
+                  Als begeleidster won zij meerdere prijzen en maakte zij deel
+                  uit van een kamermuziekensemble. Sinds 1993 woont zij in
+                  Nederland, waar zij met diverse muziekgezelschappen werkt en
+                  jong talent begeleidt op weg naar het concertpodium.
                 </p>
               </div>
             </article>
@@ -192,6 +261,7 @@
         </div>
       </section>
 
+      <!-- Concert archive -->
       <section class="previous-section" id="eerdere-concerten" aria-labelledby="previous-title">
         <div class="section-inner">
           <div class="section-heading">
@@ -201,15 +271,15 @@
 
           <div class="previous-grid">
             <article class="previous-card">
-              <span>15 november 2025</span>
+              <time datetime="2025-11-15">15 november 2025</time>
               <h3>Klassieke hoogtepunten</h3>
               <p>
-                Met muziek van onder meer Fauré, Pergolesi, Vivaldi, Haydn en
-                Purcell.
+                Met muziek van onder meer Faur&eacute;, Pergolesi, Vivaldi,
+                Mozart, Haydn en Purcell.
               </p>
             </article>
             <article class="previous-card">
-              <span>18 november 2023</span>
+              <time datetime="2023-11-18">18 november 2023</time>
               <h3>Seizoenen</h3>
               <p>
                 Muziek over de natuur en de vier seizoenen, uitgevoerd in de
@@ -220,47 +290,82 @@
         </div>
       </section>
 
+      <!-- Contact -->
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="section-inner">
-          <div class="contact-heading">
-            <p class="brand-script">Contact</p>
-            <h2 id="contact-title">Neem contact met ons op</h2>
+        <div class="section-inner contact-layout">
+          <div class="contact-intro">
+            <p class="eyebrow">Meer weten of meezingen?</p>
+            <h2 id="contact-title">Neem contact op</h2>
+            <p class="contact-lead">
+              Nieuwe leden zijn van harte welkom om vrijblijvend een repetitie
+              bij te wonen. Ook voor vragen over concerten of kaarten horen we
+              graag van u.
+            </p>
+            <dl class="contact-details">
+              <div>
+                <dt>Repetitie:</dt>
+                <dd>donderdag, 10:00 - 12:15</dd>
+              </div>
+              <div>
+                <dt>Locatie:</dt>
+                <dd>Hoflaankerk, Oudedijk 2</dd>
+              </div>
+            </dl>
           </div>
 
           <form class="contact-form">
-            <div class="form-left">
-              <label>
+            <fieldset class="form-names">
+              <legend class="visually-hidden">Uw naam</legend>
+              <label for="first-name">
                 Voornaam
-                <input type="text" name="first-name" autocomplete="given-name">
+                <input
+                  id="first-name"
+                  type="text"
+                  name="first-name"
+                  autocomplete="given-name"
+                  required
+                >
               </label>
-              <label>
+              <label for="prefix">
                 Tussenvoegsel
-                <input type="text" name="prefix" autocomplete="additional-name">
+                <input
+                  id="prefix"
+                  type="text"
+                  name="prefix"
+                  autocomplete="additional-name"
+                >
               </label>
-              <label>
+              <label for="last-name">
                 Achternaam
-                <input type="text" name="last-name" autocomplete="family-name">
+                <input
+                  id="last-name"
+                  type="text"
+                  name="last-name"
+                  autocomplete="family-name"
+                  required
+                >
               </label>
-              <label class="wide">
-                Email-adres
-                <input type="email" name="email" autocomplete="email">
-              </label>
-              <label class="checkbox-row">
-                <input type="checkbox" name="terms">
-                <span>Ik ga akkoord met de <a href="algemene-voorwaarden.html">algemene voorwaarden</a>.</span>
-              </label>
-              <button class="button button-primary form-submit" type="submit">Versturen</button>
-            </div>
+            </fieldset>
 
-            <label class="message-field">
-              Uw vraag
-              <textarea name="message"></textarea>
+            <label class="wide" for="email">
+              E-mailadres
+              <input id="email" type="email" name="email" autocomplete="email" required>
             </label>
+            <label class="message-field" for="message">
+              Uw vraag
+              <textarea id="message" name="message" rows="6" required></textarea>
+            </label>
+            <label class="checkbox-row" for="terms">
+              <input id="terms" type="checkbox" name="terms" required>
+              <span>Ik ga akkoord met de <a href="algemene-voorwaarden.html">algemene voorwaarden</a>.</span>
+            </label>
+            <button class="button button-primary form-submit" type="submit">Versturen</button>
           </form>
         </div>
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
@@ -277,11 +382,22 @@
       </div>
     </footer>
     <script>
-      document.querySelectorAll(".mobile-nav a").forEach((link) => {
-        link.addEventListener("click", () => {
-          link.closest(".mobile-nav").removeAttribute("open");
+      const siteNavigation = document.querySelector(".site-nav");
+
+      if (siteNavigation) {
+        const updateNavigation = () => {
+          siteNavigation.classList.toggle("is-scrolled", window.scrollY > 16);
+        };
+
+        updateNavigation();
+        window.addEventListener("scroll", updateNavigation, { passive: true });
+
+        document.querySelectorAll(".mobile-nav a").forEach((link) => {
+          link.addEventListener("click", () => {
+            link.closest(".mobile-nav")?.removeAttribute("open");
+          });
         });
-      });
+      }
     </script>
   </body>
 </html>
