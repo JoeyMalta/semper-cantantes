@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500;1,9..144,650&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=homepage-content-20260808">
+    <link rel="stylesheet" href="styles.css?v=ux-review-20260808">
   </head>
   <body data-version="client-round-20260716">
     <!-- Hero and primary navigation -->
@@ -31,15 +31,16 @@
           </summary>
           <div class="mobile-nav-panel">
             <a class="nav-link" href="#concerten">Programma</a>
+            <a class="nav-link" href="#contact">Contact</a>
             <a class="nav-link" href="#over-ons">Over ons</a>
             <a class="nav-link" href="#team">Dirigent & pianist</a>
             <a class="nav-link" href="#eerdere-concerten">Eerdere concerten</a>
-            <a class="nav-link" href="#contact">Contact</a>
             <button
               class="login-link"
               type="button"
-              disabled
-              title="Binnenkort beschikbaar"
+              data-login-demo
+              aria-haspopup="dialog"
+              aria-controls="login-demo"
             >
               Login
             </button>
@@ -55,8 +56,9 @@
           <button
             class="login-link"
             type="button"
-            disabled
-            title="Binnenkort beschikbaar"
+            data-login-demo
+            aria-haspopup="dialog"
+            aria-controls="login-demo"
           >
             Login
           </button>
@@ -75,8 +77,8 @@
           samenzang, tekst en een verzorgde koorklank.
         </p>
         <div class="hero-actions" aria-label="Belangrijke acties">
-          <a class="button button-primary" href="#over-ons">Meer informatie</a>
-          <a class="button button-ghost" href="#concerten">Ons programma</a>
+          <a class="button button-primary" href="#concerten">Bekijk het concert</a>
+          <a class="button button-ghost" href="#contact">Contact</a>
         </div>
         <dl class="hero-details" aria-label="Kerngegevens Semper Cantantes">
           <div>
@@ -104,8 +106,8 @@
             <h2 id="concerten-title">Aankomend concert</h2>
           </div>
 
-          <div class="concert-grid upcoming-concerts">
-            <article class="concert-card">
+          <div class="upcoming-concert">
+            <article class="concert-card concert-card-featured">
               <div class="concert-image">
                 <img src="assets/concert-winter.png" alt="Bladmuziek met lavendel in warm najaarslicht">
                 <time class="concert-date" datetime="2026-11-07T14:30">
@@ -122,33 +124,63 @@
                 <a class="small-button" href="concert.html">Meer informatie</a>
               </div>
             </article>
-
-            <article class="concert-card concert-card-expected">
-              <div class="concert-image">
-                <img src="assets/concert-voorjaar.png" alt="Bladmuziek met lichte lavendelkleuren">
-                <p class="concert-date">Wordt verwacht</p>
-              </div>
-              <div class="concert-body">
-                <p class="eyebrow">Binnenkort meer</p>
-                <h3>Wordt verwacht</h3>
-                <p>Nieuwe concertinformatie wordt hier bekendgemaakt zodra deze beschikbaar is.</p>
-                <span class="small-button small-button-disabled">Informatie volgt</span>
-              </div>
-            </article>
-
-            <article class="concert-card concert-card-expected">
-              <div class="concert-image">
-                <img src="assets/concert-zomer.png" alt="Bladmuziek met lavendel in zacht licht">
-                <p class="concert-date">Wordt verwacht</p>
-              </div>
-              <div class="concert-body">
-                <p class="eyebrow">Binnenkort meer</p>
-                <h3>Wordt verwacht</h3>
-                <p>Nieuwe concertinformatie wordt hier bekendgemaakt zodra deze beschikbaar is.</p>
-                <span class="small-button small-button-disabled">Informatie volgt</span>
-              </div>
-            </article>
           </div>
+        </div>
+      </section>
+
+      <!-- Contact and rehearsal information -->
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="section-inner contact-layout">
+          <div class="contact-intro">
+            <p class="eyebrow">Meer weten of meezingen?</p>
+            <h2 id="contact-title">Neem contact op</h2>
+            <p class="contact-lead">
+              Nieuwe leden zijn welkom om vrijblijvend een repetitie bij te
+              wonen. Ook voor vragen over concerten of kaarten helpen we u
+              graag verder.
+            </p>
+            <dl class="contact-details">
+              <div>
+                <dt>Repetitie</dt>
+                <dd>donderdag, 10.00 - 12.15 uur</dd>
+              </div>
+              <div>
+                <dt>Locatie</dt>
+                <dd>Hoflaankerk, Oudedijk 2, Rotterdam</dd>
+              </div>
+              <div>
+                <dt>E-mail</dt>
+                <dd><a href="mailto:info@sempercantantes.nl">info@sempercantantes.nl</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <form
+            class="contact-form"
+            action="mailto:info@sempercantantes.nl"
+            method="post"
+            enctype="text/plain"
+          >
+            <label for="contact-name">
+              Naam
+              <input
+                id="contact-name"
+                type="text"
+                name="naam"
+                autocomplete="name"
+                required
+              >
+            </label>
+            <label for="email">
+              E-mailadres
+              <input id="email" type="email" name="email" autocomplete="email" required>
+            </label>
+            <label class="message-field" for="message">
+              Uw vraag
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </label>
+            <button class="button button-primary form-submit" type="submit">Versturen</button>
+          </form>
         </div>
       </section>
 
@@ -173,7 +205,7 @@
               </div>
             </dl>
             <a class="button button-outline about-history-link" href="geschiedenis.html">
-              Bekijk onze tijdlijn
+              Meer over onze geschiedenis
             </a>
           </div>
           <div class="about-copy">
@@ -189,11 +221,6 @@
               Vandaag telt het koor ongeveer 25 leden. Het klassieke repertoire
               bestaat uit wereldlijke en kerkelijke muziek, met veel aandacht
               voor samenzang en een verzorgde koorklank.
-            </p>
-            <p>
-              Nieuwe leden zijn van harte welkom om vrijblijvend een repetitie
-              bij te wonen op donderdagmorgen van 10:00 - 12:15 uur in de
-              Hoflaankerk.
             </p>
           </div>
         </div>
@@ -221,14 +248,10 @@
                   treedt zij regelmatig op als solist bij diverse koren.
                 </p>
                 <p>
-                  Haar repertoire omvat onder meer de Johannes Passion van
-                  Bach, The Messiah van H&auml;ndel, het Gloria van Vivaldi en
-                  The Armed Man van Karl Jenkins.
-                </p>
-                <p>
-                  Naast haar werk als solist en ervaren koorzanger dirigeert
-                  Tessa koren in uiteenlopende genres. Ook geeft zij
-                  koorcoaching aan verschillende Nederlandse koren.
+                  Haar repertoire omvat onder meer werken van Bach, H&auml;ndel,
+                  Vivaldi en Karl Jenkins. Naast haar werk als solist en ervaren
+                  koorzanger dirigeert Tessa koren in uiteenlopende genres en
+                  geeft zij koorcoaching.
                 </p>
               </div>
             </article>
@@ -290,80 +313,29 @@
         </div>
       </section>
 
-      <!-- Contact -->
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="section-inner contact-layout">
-          <div class="contact-intro">
-            <p class="eyebrow">Meer weten of meezingen?</p>
-            <h2 id="contact-title">Neem contact op</h2>
-            <p class="contact-lead">
-              Nieuwe leden zijn van harte welkom om vrijblijvend een repetitie
-              bij te wonen. Ook voor vragen over concerten of kaarten horen we
-              graag van u.
-            </p>
-            <dl class="contact-details">
-              <div>
-                <dt>Repetitie:</dt>
-                <dd>donderdag, 10:00 - 12:15</dd>
-              </div>
-              <div>
-                <dt>Locatie:</dt>
-                <dd>Hoflaankerk, Oudedijk 2</dd>
-              </div>
-            </dl>
-          </div>
-
-          <form class="contact-form">
-            <fieldset class="form-names">
-              <legend class="visually-hidden">Uw naam</legend>
-              <label for="first-name">
-                Voornaam
-                <input
-                  id="first-name"
-                  type="text"
-                  name="first-name"
-                  autocomplete="given-name"
-                  required
-                >
-              </label>
-              <label for="prefix">
-                Tussenvoegsel
-                <input
-                  id="prefix"
-                  type="text"
-                  name="prefix"
-                  autocomplete="additional-name"
-                >
-              </label>
-              <label for="last-name">
-                Achternaam
-                <input
-                  id="last-name"
-                  type="text"
-                  name="last-name"
-                  autocomplete="family-name"
-                  required
-                >
-              </label>
-            </fieldset>
-
-            <label class="wide" for="email">
-              E-mailadres
-              <input id="email" type="email" name="email" autocomplete="email" required>
-            </label>
-            <label class="message-field" for="message">
-              Uw vraag
-              <textarea id="message" name="message" rows="6" required></textarea>
-            </label>
-            <label class="checkbox-row" for="terms">
-              <input id="terms" type="checkbox" name="terms" required>
-              <span>Ik ga akkoord met de <a href="algemene-voorwaarden.html">algemene voorwaarden</a>.</span>
-            </label>
-            <button class="button button-primary form-submit" type="submit">Versturen</button>
-          </form>
-        </div>
-      </section>
     </main>
+
+    <dialog class="login-demo" id="login-demo" aria-labelledby="login-demo-title">
+      <div class="login-demo-inner">
+        <button class="login-demo-close" type="button" data-close-login aria-label="Sluiten">&times;</button>
+        <p class="eyebrow">Ledenomgeving</p>
+        <h2 id="login-demo-title">Demonstratie</h2>
+        <p>
+          Deze ledenomgeving is alleen een voorbeeld en bevat uitsluitend
+          verzonnen gegevens. De openbare website werkt volledig zonder login.
+        </p>
+        <div class="demo-member-list" aria-label="Voorbeeld verjaardagslijst">
+          <strong>Voorbeeld verjaardagslijst</strong>
+          <p>Demo-lid A &middot; 12 maart</p>
+          <p>Demo-lid B &middot; 24 maart</p>
+        </div>
+        <p class="login-demo-note">
+          Voor echte ledeninformatie is een beveiligde backend met goed
+          toegangsbeheer nodig. Er worden hier geen persoonsgegevens opgeslagen.
+        </p>
+        <button class="button button-primary" type="button" data-close-login>Sluiten</button>
+      </div>
+    </dialog>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -398,6 +370,23 @@
           });
         });
       }
+
+      const loginDemo = document.querySelector("#login-demo");
+
+      document.querySelectorAll("[data-login-demo]").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.closest(".mobile-nav")?.removeAttribute("open");
+          loginDemo?.showModal();
+        });
+      });
+
+      document.querySelectorAll("[data-close-login]").forEach((button) => {
+        button.addEventListener("click", () => loginDemo?.close());
+      });
+
+      loginDemo?.addEventListener("click", (event) => {
+        if (event.target === loginDemo) loginDemo.close();
+      });
     </script>
   </body>
 </html>
