@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500;1,9..144,650&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=ux-review-20260808">
+    <link rel="stylesheet" href="styles.css?v=final-polish-20260808">
   </head>
   <body data-version="client-round-20260716">
     <!-- Hero and primary navigation -->
@@ -31,10 +31,10 @@
           </summary>
           <div class="mobile-nav-panel">
             <a class="nav-link" href="#concerten">Programma</a>
-            <a class="nav-link" href="#contact">Contact</a>
             <a class="nav-link" href="#over-ons">Over ons</a>
             <a class="nav-link" href="#team">Dirigent & pianist</a>
             <a class="nav-link" href="#eerdere-concerten">Eerdere concerten</a>
+            <a class="nav-link" href="#contact">Contact</a>
             <button
               class="login-link"
               type="button"
@@ -73,8 +73,8 @@
           <span>Sinds 1957</span>
         </div>
         <p class="hero-copy">
-          Klassieke wereldlijke en kerkelijke koormuziek met aandacht voor
-          samenzang, tekst en een verzorgde koorklank.
+          Met plezier zingen we klassieke wereldlijke en kerkelijke muziek,
+          met aandacht voor samenzang, tekst en een warme koorklank.
         </p>
         <div class="hero-actions" aria-label="Belangrijke acties">
           <a class="button button-primary" href="#concerten">Bekijk het concert</a>
@@ -109,14 +109,17 @@
           <div class="upcoming-concert">
             <article class="concert-card concert-card-featured">
               <div class="concert-image">
-                <img src="assets/concert-winter.png" alt="Bladmuziek met lavendel in warm najaarslicht">
-                <time class="concert-date" datetime="2026-11-07T14:30">
-                  7 november 2026 <span aria-hidden="true"></span> 14:30
-                </time>
+                <img
+                  src="assets/najaarsconcert-2026.jpeg"
+                  alt="Affiche van het Najaarsconcert van Semper Cantantes op 7 november 2026"
+                >
               </div>
               <div class="concert-body">
                 <p class="eyebrow">Termaat Huis, Rotterdam</p>
                 <h3>Najaarsconcert</h3>
+                <p class="concert-meta">
+                  <time datetime="2026-11-07T14:30">7 november 2026 om 14.30 uur</time>
+                </p>
                 <p>
                   Een middag met muziek van H&auml;ndel, Elgar en Mozart, met
                   Tessa Maalcke, Faina Ivanov-Aptekar en bariton Guyon Mingelen.
@@ -125,62 +128,6 @@
               </div>
             </article>
           </div>
-        </div>
-      </section>
-
-      <!-- Contact and rehearsal information -->
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="section-inner contact-layout">
-          <div class="contact-intro">
-            <p class="eyebrow">Meer weten of meezingen?</p>
-            <h2 id="contact-title">Neem contact op</h2>
-            <p class="contact-lead">
-              Nieuwe leden zijn welkom om vrijblijvend een repetitie bij te
-              wonen. Ook voor vragen over concerten of kaarten helpen we u
-              graag verder.
-            </p>
-            <dl class="contact-details">
-              <div>
-                <dt>Repetitie</dt>
-                <dd>donderdag, 10.00 - 12.15 uur</dd>
-              </div>
-              <div>
-                <dt>Locatie</dt>
-                <dd>Hoflaankerk, Oudedijk 2, Rotterdam</dd>
-              </div>
-              <div>
-                <dt>E-mail</dt>
-                <dd><a href="mailto:info@sempercantantes.nl">info@sempercantantes.nl</a></dd>
-              </div>
-            </dl>
-          </div>
-
-          <form
-            class="contact-form"
-            action="mailto:info@sempercantantes.nl"
-            method="post"
-            enctype="text/plain"
-          >
-            <label for="contact-name">
-              Naam
-              <input
-                id="contact-name"
-                type="text"
-                name="naam"
-                autocomplete="name"
-                required
-              >
-            </label>
-            <label for="email">
-              E-mailadres
-              <input id="email" type="email" name="email" autocomplete="email" required>
-            </label>
-            <label class="message-field" for="message">
-              Uw vraag
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </label>
-            <button class="button button-primary form-submit" type="submit">Versturen</button>
-          </form>
         </div>
       </section>
 
@@ -313,29 +260,165 @@
         </div>
       </section>
 
+      <!-- Contact and rehearsal information -->
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="section-inner contact-layout">
+          <div class="contact-intro">
+            <p class="eyebrow">Meer weten of meezingen?</p>
+            <h2 id="contact-title">Neem contact op</h2>
+            <p class="contact-lead">
+              Nieuwe leden zijn welkom om vrijblijvend een repetitie bij te
+              wonen. Ook voor vragen over concerten of kaarten helpen we u
+              graag verder.
+            </p>
+            <dl class="contact-details">
+              <div>
+                <dt>Repetitie</dt>
+                <dd>donderdag, 10.00 - 12.15 uur</dd>
+              </div>
+              <div>
+                <dt>Locatie</dt>
+                <dd>Hoflaankerk, Oudedijk 2, Rotterdam</dd>
+              </div>
+              <div>
+                <dt>E-mail</dt>
+                <dd><a href="mailto:info@sempercantantes.nl">info@sempercantantes.nl</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <form
+            class="contact-form"
+            action="mailto:info@sempercantantes.nl"
+            method="post"
+            enctype="text/plain"
+          >
+            <label for="contact-name">
+              Naam
+              <input
+                id="contact-name"
+                type="text"
+                name="naam"
+                autocomplete="name"
+                required
+              >
+            </label>
+            <label for="email">
+              E-mailadres
+              <input id="email" type="email" name="email" autocomplete="email" required>
+            </label>
+            <label class="message-field" for="message">
+              Uw vraag
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </label>
+            <button class="button button-primary form-submit" type="submit">Versturen</button>
+          </form>
+        </div>
+      </section>
+
     </main>
 
-    <dialog class="login-demo" id="login-demo" aria-labelledby="login-demo-title">
+    <div
+      class="login-demo"
+      id="login-demo"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Ledenomgeving"
+      hidden
+    >
       <div class="login-demo-inner">
         <button class="login-demo-close" type="button" data-close-login aria-label="Sluiten">&times;</button>
-        <p class="eyebrow">Ledenomgeving</p>
-        <h2 id="login-demo-title">Demonstratie</h2>
-        <p>
-          Deze ledenomgeving is alleen een voorbeeld en bevat uitsluitend
-          verzonnen gegevens. De openbare website werkt volledig zonder login.
-        </p>
-        <div class="demo-member-list" aria-label="Voorbeeld verjaardagslijst">
-          <strong>Voorbeeld verjaardagslijst</strong>
-          <p>Demo-lid A &middot; 12 maart</p>
-          <p>Demo-lid B &middot; 24 maart</p>
-        </div>
-        <p class="login-demo-note">
-          Voor echte ledeninformatie is een beveiligde backend met goed
-          toegangsbeheer nodig. Er worden hier geen persoonsgegevens opgeslagen.
-        </p>
-        <button class="button button-primary" type="button" data-close-login>Sluiten</button>
+
+        <section class="auth-view" data-auth-view>
+          <p class="eyebrow">Ledenomgeving</p>
+          <h2 id="login-demo-title">Welkom</h2>
+          <p class="auth-intro">
+            Log in om de demonstratie van de verjaardagslijst te bekijken.
+            Alle namen en data in deze omgeving zijn fictief.
+          </p>
+
+          <div class="auth-switch" aria-label="Kies inloggen of registreren">
+            <button type="button" data-auth-mode="login" aria-pressed="true">Inloggen</button>
+            <button type="button" data-auth-mode="register" aria-pressed="false">Registreren</button>
+          </div>
+
+          <form class="auth-form" data-login-form novalidate>
+            <label for="member-email">
+              E-mailadres
+              <input id="member-email" type="email" name="email" autocomplete="email" required>
+            </label>
+            <label for="member-password">
+              Wachtwoord
+              <input
+                id="member-password"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                required
+              >
+            </label>
+            <p class="demo-credentials">
+              Demo: <strong>lid@sempercantantes.nl</strong> met wachtwoord
+              <strong>semper1957</strong>
+            </p>
+            <p class="auth-message" data-login-message role="alert"></p>
+            <button class="button button-primary" type="submit">Inloggen</button>
+          </form>
+
+          <form class="auth-form" data-register-form hidden novalidate>
+            <label for="register-name">
+              Naam
+              <input id="register-name" type="text" name="name" autocomplete="name" required>
+            </label>
+            <label for="register-email">
+              E-mailadres
+              <input id="register-email" type="email" name="email" autocomplete="email" required>
+            </label>
+            <label for="register-password">
+              Wachtwoord
+              <input
+                id="register-password"
+                type="password"
+                name="password"
+                autocomplete="new-password"
+                minlength="6"
+                required
+              >
+            </label>
+            <p class="auth-message" data-register-message role="alert"></p>
+            <button class="button button-primary" type="submit">Account aanmaken</button>
+          </form>
+
+          <p class="login-demo-note">
+            Dit is een lokale demonstratie: er wordt niets opgeslagen. Voor een
+            echte, beveiligde ledenomgeving is een backend met toegangsbeheer nodig.
+          </p>
+        </section>
+
+        <section class="member-view" data-member-view hidden aria-labelledby="birthday-title">
+          <p class="eyebrow">Ledenomgeving</p>
+          <h2 id="birthday-title" tabindex="-1">Verjaardagen</h2>
+          <p>Welkom, <strong data-member-name>demolid</strong>. Dit overzicht gebruikt fictieve namen.</p>
+
+          <div class="birthday-months" aria-label="Fictieve verjaardagslijst per maand">
+            <section><h3>Januari</h3><p>Anna <time datetime="2026-01-08">8 januari</time></p></section>
+            <section><h3>Februari</h3><p>Bea <time datetime="2026-02-21">21 februari</time></p></section>
+            <section><h3>Maart</h3><p>Carla <time datetime="2026-03-12">12 maart</time></p></section>
+            <section><h3>April</h3><p>Dora <time datetime="2026-04-04">4 april</time></p></section>
+            <section><h3>Mei</h3><p>Eva <time datetime="2026-05-19">19 mei</time></p></section>
+            <section><h3>Juni</h3><p>Femke <time datetime="2026-06-07">7 juni</time></p></section>
+            <section><h3>Juli</h3><p>Greet <time datetime="2026-07-26">26 juli</time></p></section>
+            <section><h3>Augustus</h3><p>Hanneke <time datetime="2026-08-14">14 augustus</time></p></section>
+            <section><h3>September</h3><p>Iris <time datetime="2026-09-03">3 september</time></p></section>
+            <section><h3>Oktober</h3><p>Joke <time datetime="2026-10-18">18 oktober</time></p></section>
+            <section><h3>November</h3><p>Karin <time datetime="2026-11-09">9 november</time></p></section>
+            <section><h3>December</h3><p>Louise <time datetime="2026-12-22">22 december</time></p></section>
+          </div>
+
+          <button class="button button-outline member-logout" type="button" data-logout>Uitloggen</button>
+        </section>
       </div>
-    </dialog>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -372,20 +455,126 @@
       }
 
       const loginDemo = document.querySelector("#login-demo");
+      const authView = loginDemo?.querySelector("[data-auth-view]");
+      const memberView = loginDemo?.querySelector("[data-member-view]");
+      const loginForm = loginDemo?.querySelector("[data-login-form]");
+      const registerForm = loginDemo?.querySelector("[data-register-form]");
+      const loginMessage = loginDemo?.querySelector("[data-login-message]");
+      const registerMessage = loginDemo?.querySelector("[data-register-message]");
+      const memberName = loginDemo?.querySelector("[data-member-name]");
+      let loginTrigger = null;
+
+      const setAuthMode = (mode) => {
+        const showLogin = mode === "login";
+        loginForm?.toggleAttribute("hidden", !showLogin);
+        registerForm?.toggleAttribute("hidden", showLogin);
+        loginDemo?.querySelectorAll("[data-auth-mode]").forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.authMode === mode));
+        });
+        if (loginMessage) loginMessage.textContent = "";
+        if (registerMessage) registerMessage.textContent = "";
+      };
+
+      const showMemberView = (name) => {
+        authView?.setAttribute("hidden", "");
+        memberView?.removeAttribute("hidden");
+        if (memberName) memberName.textContent = name;
+        loginDemo?.querySelector(".login-demo-inner")?.scrollTo({ top: 0 });
+        loginDemo?.querySelector("#birthday-title")?.focus();
+      };
+
+      const resetMemberDemo = () => {
+        memberView?.setAttribute("hidden", "");
+        authView?.removeAttribute("hidden");
+        loginForm?.reset();
+        registerForm?.reset();
+        setAuthMode("login");
+      };
+
+      const openLogin = (trigger) => {
+        loginTrigger = trigger;
+        loginDemo?.removeAttribute("hidden");
+        document.body.classList.add("has-open-dialog");
+        loginDemo?.querySelector("#member-email")?.focus();
+      };
+
+      const closeLogin = () => {
+        loginDemo?.setAttribute("hidden", "");
+        document.body.classList.remove("has-open-dialog");
+        resetMemberDemo();
+        loginTrigger?.focus();
+      };
 
       document.querySelectorAll("[data-login-demo]").forEach((button) => {
         button.addEventListener("click", () => {
           button.closest(".mobile-nav")?.removeAttribute("open");
-          loginDemo?.showModal();
+          openLogin(button);
         });
       });
 
       document.querySelectorAll("[data-close-login]").forEach((button) => {
-        button.addEventListener("click", () => loginDemo?.close());
+        button.addEventListener("click", closeLogin);
+      });
+
+      loginDemo?.querySelectorAll("[data-auth-mode]").forEach((button) => {
+        button.addEventListener("click", () => setAuthMode(button.dataset.authMode));
+      });
+
+      loginForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(loginForm);
+        const email = String(formData.get("email") || "").trim().toLowerCase();
+        const password = String(formData.get("password") || "");
+
+        if (email === "lid@sempercantantes.nl" && password === "semper1957") {
+          showMemberView("demolid");
+          return;
+        }
+
+        if (loginMessage) {
+          loginMessage.textContent = "Deze gegevens kloppen niet. Gebruik de demo-inlog hierboven.";
+        }
+      });
+
+      registerForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!registerForm.checkValidity()) {
+          if (registerMessage) registerMessage.textContent = "Vul alle velden volledig in.";
+          return;
+        }
+
+        const formData = new FormData(registerForm);
+        const name = String(formData.get("name") || "demolid").trim();
+        showMemberView(name || "demolid");
+      });
+
+      loginDemo?.querySelector("[data-logout]")?.addEventListener("click", () => {
+        resetMemberDemo();
+        loginDemo?.querySelector("#member-email")?.focus();
       });
 
       loginDemo?.addEventListener("click", (event) => {
-        if (event.target === loginDemo) loginDemo.close();
+        if (event.target === loginDemo) closeLogin();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && loginDemo && !loginDemo.hidden) closeLogin();
+
+        if (event.key === "Tab" && loginDemo && !loginDemo.hidden) {
+          const focusableElements = [...loginDemo.querySelectorAll("button:not([disabled]), input:not([disabled])")]
+            .filter((element) => element.offsetParent !== null);
+          const firstElement = focusableElements[0];
+          const lastElement = focusableElements.at(-1);
+
+          if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement?.focus();
+          } else if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement?.focus();
+          }
+        }
       });
     </script>
   </body>
