@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Verjaardagen | Semper Cantantes</title>
+    <meta
+      name="description"
+      content="Demo van de verjaardagslijst voor leden van Semper Cantantes."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css?v=member-flow-20260808">
+  </head>
+  <body class="member-page" data-member-page>
+    <header class="subpage-header">
+      <nav class="subpage-nav" aria-label="Ledenomgeving navigatie">
+        <a class="subpage-brand" href="index.html" aria-label="Semper Cantantes homepage">
+          <img src="assets/semper-logo.png" alt="">
+          <span>Semper Cantantes</span>
+        </a>
+        <div class="subpage-links">
+          <span>Ledenomgeving</span>
+        </div>
+        <div class="member-page-actions">
+          <details class="member-profile" data-member-profile hidden>
+            <summary>Welkom <span data-member-display-name>Cybille</span></summary>
+            <div class="member-profile-menu">
+              <a href="verjaardagen.html" aria-current="page">Verjaardagen</a>
+              <button type="button" data-member-logout>Uitloggen</button>
+            </div>
+          </details>
+          <a class="subpage-home" href="index.html">Homepage</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="member-main">
+      <section data-member-content hidden aria-labelledby="birthdays-title">
+        <header class="member-page-heading">
+          <p class="eyebrow">Ledenomgeving</p>
+          <h1 id="birthdays-title">Verjaardagen</h1>
+          <p>
+            Welkom <strong data-birthday-name>Cybille</strong>. Hieronder staat
+            de verjaardagslijst rustig per maand gegroepeerd.
+          </p>
+          <p class="member-demo-note">
+            Dit is een demonstratie met fictieve namen en data.
+          </p>
+        </header>
+
+        <div class="birthday-months birthday-page-months" aria-label="Fictieve verjaardagslijst per maand">
+          <section><h2>Januari</h2><p>Anna <time datetime="2026-01-08">8 januari</time></p></section>
+          <section><h2>Februari</h2><p>Bea <time datetime="2026-02-21">21 februari</time></p></section>
+          <section><h2>Maart</h2><p>Carla <time datetime="2026-03-12">12 maart</time></p></section>
+          <section><h2>April</h2><p>Dora <time datetime="2026-04-04">4 april</time></p></section>
+          <section><h2>Mei</h2><p>Eva <time datetime="2026-05-19">19 mei</time></p></section>
+          <section><h2>Juni</h2><p>Femke <time datetime="2026-06-07">7 juni</time></p></section>
+          <section><h2>Juli</h2><p>Greet <time datetime="2026-07-26">26 juli</time></p></section>
+          <section><h2>Augustus</h2><p>Hanneke <time datetime="2026-08-14">14 augustus</time></p></section>
+          <section><h2>September</h2><p>Iris <time datetime="2026-09-03">3 september</time></p></section>
+          <section><h2>Oktober</h2><p>Joke <time datetime="2026-10-18">18 oktober</time></p></section>
+          <section><h2>November</h2><p>Karin <time datetime="2026-11-09">9 november</time></p></section>
+          <section><h2>December</h2><p>Louise <time datetime="2026-12-22">22 december</time></p></section>
+        </div>
+      </section>
+
+      <section class="member-access" data-member-access aria-labelledby="member-access-title">
+        <p class="eyebrow">Ledenomgeving</p>
+        <h1 id="member-access-title">Log eerst in</h1>
+        <p>
+          De verjaardagslijst is alleen zichtbaar nadat u bent ingelogd. Ga
+          terug naar de website en gebruik daar de knop <strong>Login</strong>.
+        </p>
+        <a class="button button-primary" href="index.html">Terug naar de website</a>
+      </section>
+    </main>
+
+    <div class="site-feedback" data-site-feedback role="status" aria-live="polite" hidden></div>
+
+    <footer class="subpage-footer">
+      <span>Semper Cantantes &middot; Ledenomgeving</span>
+      <a href="index.html#contact">Contact</a>
+    </footer>
+    <script src="member-auth.js?v=member-flow-20260808"></script>
+  </body>
+</html>

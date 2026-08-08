@@ -28,6 +28,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1043,6 +1047,12 @@ h2 {
 
   .footer-inner {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .member-page .subpage-links {
+    display: none;
   }
 }
 
@@ -2387,14 +2397,6 @@ h2 {
   display: none;
 }
 
-.member-view > p:not(.eyebrow) {
-  max-width: 56ch;
-}
-
-.member-view h2:focus {
-  outline: none;
-}
-
 .birthday-months {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2408,6 +2410,7 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.birthday-months h2,
 .birthday-months h3 {
   margin-bottom: 8px;
   color: var(--lav-700);
@@ -2416,25 +2419,230 @@ h2 {
   font-weight: 650;
 }
 
-.login-demo .birthday-months p {
+.birthday-months p {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   margin: 0;
   color: var(--ink);
   font-size: 17px;
+  font-weight: 500;
 }
 
 .birthday-months time {
   color: var(--ink-soft);
 }
 
-.member-logout {
-  min-width: 160px;
-}
-
 .login-link {
   min-height: 44px;
+}
+
+.member-profile {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.member-profile > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  list-style: none;
+  color: var(--lav-700);
+  border: 1px solid var(--lav-300);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 10px 24px -18px rgba(95, 63, 160, 0.52);
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.member-profile > summary::-webkit-details-marker {
+  display: none;
+}
+
+.member-profile > summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-top: -4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.member-profile[open] > summary {
+  border-color: var(--lav-500);
+  background: var(--white);
+}
+
+.member-profile[open] > summary::after {
+  margin-top: 4px;
+  transform: rotate(225deg);
+}
+
+.member-profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 40;
+  width: 220px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20px 46px -24px rgba(36, 31, 48, 0.44);
+}
+
+.member-profile-menu a,
+.member-profile-menu button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 9px 12px;
+  color: var(--ink);
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.member-profile-menu a:hover,
+.member-profile-menu button:hover,
+.member-profile-menu a[aria-current="page"] {
+  color: var(--lav-700);
+  background: var(--lav-100);
+}
+
+.member-profile-menu button {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 7px 7px;
+}
+
+.member-profile > summary:focus-visible,
+.member-profile-menu a:focus-visible,
+.member-profile-menu button:focus-visible {
+  outline: 3px solid rgba(128, 88, 196, 0.34);
+  outline-offset: 3px;
+}
+
+.site-feedback {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1200;
+  max-width: min(420px, calc(100% - 40px));
+  padding: 15px 18px;
+  color: var(--white);
+  border-radius: 8px;
+  background: var(--plum);
+  box-shadow: 0 20px 50px -24px rgba(36, 31, 48, 0.68);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.member-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--white) 0%, var(--bg-soft) 100%);
+}
+
+.member-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.member-main {
+  width: min(980px, calc(100% - 40px));
+  min-height: calc(100vh - 208px);
+  margin: 0 auto;
+  padding: 64px 0 88px;
+}
+
+.member-page-heading {
+  max-width: 680px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.member-page-heading h1,
+.member-access h1 {
+  margin-bottom: 20px;
+  font-size: clamp(44px, 6vw, 64px);
+}
+
+.member-page-heading > p:not(.eyebrow),
+.member-access > p:not(.eyebrow) {
+  color: var(--ink-soft);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.member-page-heading .member-demo-note {
+  margin: 18px 0 0;
+  color: var(--ink-faint);
+  font-size: 16px;
+}
+
+.birthday-page-months {
+  gap: 0 56px;
+  margin: 0;
+}
+
+.birthday-page-months section {
+  padding: 24px 0;
+}
+
+.birthday-page-months h2 {
+  font-size: 24px;
+}
+
+.birthday-page-months p {
+  font-size: 18px;
+}
+
+.member-access {
+  max-width: 650px;
+  margin: 90px auto;
+  text-align: center;
+}
+
+.member-access .button {
+  margin-top: 12px;
+}
+
+@media (max-width: 1000px) {
+  .mobile-nav-panel .member-profile {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .mobile-nav-panel .member-profile > summary {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .mobile-nav-panel .member-profile-menu {
+    position: static;
+    width: 100%;
+    margin-top: 6px;
+    border-color: var(--line);
+    background: var(--bg-soft);
+    box-shadow: none;
+  }
 }
 
 @media (min-width: 1001px) and (max-width: 1440px) {
@@ -3199,16 +3407,70 @@ h2 {
     margin-top: 24px;
   }
 
-  .login-demo .birthday-months p {
-    font-size: 16px;
+  .birthday-page-months {
+    margin-top: 0;
   }
 
-  .member-logout {
-    width: 100%;
+  .birthday-page-months p {
+    font-size: 18px;
+  }
+
+  .member-main {
+    width: min(100% - 24px, 700px);
+    padding: 44px 0 64px;
+  }
+
+  .member-page-heading {
+    margin-bottom: 34px;
+  }
+
+  .member-page-heading h1,
+  .member-access h1 {
+    font-size: 40px;
+  }
+
+  .member-page-heading > p:not(.eyebrow),
+  .member-access > p:not(.eyebrow) {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .member-page-heading .member-demo-note {
+    text-align: center;
+  }
+
+  .member-page-actions {
+    gap: 8px;
+  }
+
+  .member-page .member-profile > summary {
+    min-height: 44px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .member-page .subpage-home {
+    padding: 0 14px;
+  }
+
+  .site-feedback {
+    right: 12px;
+    bottom: 12px;
+    max-width: calc(100% - 24px);
+  }
+
+  .member-access {
+    margin: 48px auto;
   }
 
   .legal-main h1 {
     font-size: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .member-page .subpage-brand span {
+    display: none;
   }
 }
 

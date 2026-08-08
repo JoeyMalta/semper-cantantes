@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500;1,9..144,650&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=final-polish-20260808">
+    <link rel="stylesheet" href="styles.css?v=member-flow-20260808">
   </head>
   <body data-version="client-round-20260716">
     <!-- Hero and primary navigation -->
@@ -39,11 +39,19 @@
               class="login-link"
               type="button"
               data-login-demo
+              data-member-logged-out
               aria-haspopup="dialog"
               aria-controls="login-demo"
             >
               Login
             </button>
+            <details class="member-profile" data-member-profile hidden>
+              <summary>Welkom <span data-member-display-name>Cybille</span></summary>
+              <div class="member-profile-menu">
+                <a href="verjaardagen.html">Verjaardagen</a>
+                <button type="button" data-member-logout>Uitloggen</button>
+              </div>
+            </details>
           </div>
         </details>
         <div class="nav-links">
@@ -57,11 +65,19 @@
             class="login-link"
             type="button"
             data-login-demo
+            data-member-logged-out
             aria-haspopup="dialog"
             aria-controls="login-demo"
           >
             Login
           </button>
+          <details class="member-profile" data-member-profile hidden>
+            <summary>Welkom <span data-member-display-name>Cybille</span></summary>
+            <div class="member-profile-menu">
+              <a href="verjaardagen.html">Verjaardagen</a>
+              <button type="button" data-member-logout>Uitloggen</button>
+            </div>
+          </details>
         </div>
       </nav>
 
@@ -333,8 +349,8 @@
           <p class="eyebrow">Ledenomgeving</p>
           <h2 id="login-demo-title">Welkom</h2>
           <p class="auth-intro">
-            Log in om de demonstratie van de verjaardagslijst te bekijken.
-            Alle namen en data in deze omgeving zijn fictief.
+            Log in met het demo-account van Cybille, of maak op dit apparaat
+            een eigen demo-account aan.
           </p>
 
           <div class="auth-switch" aria-label="Kies inloggen of registreren">
@@ -358,7 +374,7 @@
               >
             </label>
             <p class="demo-credentials">
-              Demo: <strong>lid@sempercantantes.nl</strong> met wachtwoord
+              Demo: <strong>cybille@sempercantantes.nl</strong> met wachtwoord
               <strong>semper1957</strong>
             </p>
             <p class="auth-message" data-login-message role="alert"></p>
@@ -381,7 +397,18 @@
                 type="password"
                 name="password"
                 autocomplete="new-password"
-                minlength="6"
+                minlength="8"
+                required
+              >
+            </label>
+            <label for="register-password-confirm">
+              Herhaal wachtwoord
+              <input
+                id="register-password-confirm"
+                type="password"
+                name="password-confirm"
+                autocomplete="new-password"
+                minlength="8"
                 required
               >
             </label>
@@ -390,35 +417,14 @@
           </form>
 
           <p class="login-demo-note">
-            Dit is een lokale demonstratie: er wordt niets opgeslagen. Voor een
-            echte, beveiligde ledenomgeving is een backend met toegangsbeheer nodig.
+            Deze demo bewaart alleen uw demo-account en inlogstatus in deze
+            browser. Voor echte ledengegevens is een beveiligde backend nodig.
           </p>
-        </section>
-
-        <section class="member-view" data-member-view hidden aria-labelledby="birthday-title">
-          <p class="eyebrow">Ledenomgeving</p>
-          <h2 id="birthday-title" tabindex="-1">Verjaardagen</h2>
-          <p>Welkom, <strong data-member-name>demolid</strong>. Dit overzicht gebruikt fictieve namen.</p>
-
-          <div class="birthday-months" aria-label="Fictieve verjaardagslijst per maand">
-            <section><h3>Januari</h3><p>Anna <time datetime="2026-01-08">8 januari</time></p></section>
-            <section><h3>Februari</h3><p>Bea <time datetime="2026-02-21">21 februari</time></p></section>
-            <section><h3>Maart</h3><p>Carla <time datetime="2026-03-12">12 maart</time></p></section>
-            <section><h3>April</h3><p>Dora <time datetime="2026-04-04">4 april</time></p></section>
-            <section><h3>Mei</h3><p>Eva <time datetime="2026-05-19">19 mei</time></p></section>
-            <section><h3>Juni</h3><p>Femke <time datetime="2026-06-07">7 juni</time></p></section>
-            <section><h3>Juli</h3><p>Greet <time datetime="2026-07-26">26 juli</time></p></section>
-            <section><h3>Augustus</h3><p>Hanneke <time datetime="2026-08-14">14 augustus</time></p></section>
-            <section><h3>September</h3><p>Iris <time datetime="2026-09-03">3 september</time></p></section>
-            <section><h3>Oktober</h3><p>Joke <time datetime="2026-10-18">18 oktober</time></p></section>
-            <section><h3>November</h3><p>Karin <time datetime="2026-11-09">9 november</time></p></section>
-            <section><h3>December</h3><p>Louise <time datetime="2026-12-22">22 december</time></p></section>
-          </div>
-
-          <button class="button button-outline member-logout" type="button" data-logout>Uitloggen</button>
         </section>
       </div>
     </div>
+
+    <div class="site-feedback" data-site-feedback role="status" aria-live="polite" hidden></div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -454,128 +460,7 @@
         });
       }
 
-      const loginDemo = document.querySelector("#login-demo");
-      const authView = loginDemo?.querySelector("[data-auth-view]");
-      const memberView = loginDemo?.querySelector("[data-member-view]");
-      const loginForm = loginDemo?.querySelector("[data-login-form]");
-      const registerForm = loginDemo?.querySelector("[data-register-form]");
-      const loginMessage = loginDemo?.querySelector("[data-login-message]");
-      const registerMessage = loginDemo?.querySelector("[data-register-message]");
-      const memberName = loginDemo?.querySelector("[data-member-name]");
-      let loginTrigger = null;
-
-      const setAuthMode = (mode) => {
-        const showLogin = mode === "login";
-        loginForm?.toggleAttribute("hidden", !showLogin);
-        registerForm?.toggleAttribute("hidden", showLogin);
-        loginDemo?.querySelectorAll("[data-auth-mode]").forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.authMode === mode));
-        });
-        if (loginMessage) loginMessage.textContent = "";
-        if (registerMessage) registerMessage.textContent = "";
-      };
-
-      const showMemberView = (name) => {
-        authView?.setAttribute("hidden", "");
-        memberView?.removeAttribute("hidden");
-        if (memberName) memberName.textContent = name;
-        loginDemo?.querySelector(".login-demo-inner")?.scrollTo({ top: 0 });
-        loginDemo?.querySelector("#birthday-title")?.focus();
-      };
-
-      const resetMemberDemo = () => {
-        memberView?.setAttribute("hidden", "");
-        authView?.removeAttribute("hidden");
-        loginForm?.reset();
-        registerForm?.reset();
-        setAuthMode("login");
-      };
-
-      const openLogin = (trigger) => {
-        loginTrigger = trigger;
-        loginDemo?.removeAttribute("hidden");
-        document.body.classList.add("has-open-dialog");
-        loginDemo?.querySelector("#member-email")?.focus();
-      };
-
-      const closeLogin = () => {
-        loginDemo?.setAttribute("hidden", "");
-        document.body.classList.remove("has-open-dialog");
-        resetMemberDemo();
-        loginTrigger?.focus();
-      };
-
-      document.querySelectorAll("[data-login-demo]").forEach((button) => {
-        button.addEventListener("click", () => {
-          button.closest(".mobile-nav")?.removeAttribute("open");
-          openLogin(button);
-        });
-      });
-
-      document.querySelectorAll("[data-close-login]").forEach((button) => {
-        button.addEventListener("click", closeLogin);
-      });
-
-      loginDemo?.querySelectorAll("[data-auth-mode]").forEach((button) => {
-        button.addEventListener("click", () => setAuthMode(button.dataset.authMode));
-      });
-
-      loginForm?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const formData = new FormData(loginForm);
-        const email = String(formData.get("email") || "").trim().toLowerCase();
-        const password = String(formData.get("password") || "");
-
-        if (email === "lid@sempercantantes.nl" && password === "semper1957") {
-          showMemberView("demolid");
-          return;
-        }
-
-        if (loginMessage) {
-          loginMessage.textContent = "Deze gegevens kloppen niet. Gebruik de demo-inlog hierboven.";
-        }
-      });
-
-      registerForm?.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        if (!registerForm.checkValidity()) {
-          if (registerMessage) registerMessage.textContent = "Vul alle velden volledig in.";
-          return;
-        }
-
-        const formData = new FormData(registerForm);
-        const name = String(formData.get("name") || "demolid").trim();
-        showMemberView(name || "demolid");
-      });
-
-      loginDemo?.querySelector("[data-logout]")?.addEventListener("click", () => {
-        resetMemberDemo();
-        loginDemo?.querySelector("#member-email")?.focus();
-      });
-
-      loginDemo?.addEventListener("click", (event) => {
-        if (event.target === loginDemo) closeLogin();
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && loginDemo && !loginDemo.hidden) closeLogin();
-
-        if (event.key === "Tab" && loginDemo && !loginDemo.hidden) {
-          const focusableElements = [...loginDemo.querySelectorAll("button:not([disabled]), input:not([disabled])")]
-            .filter((element) => element.offsetParent !== null);
-          const firstElement = focusableElements[0];
-          const lastElement = focusableElements.at(-1);
-
-          if (event.shiftKey && document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement?.focus();
-          } else if (!event.shiftKey && document.activeElement === lastElement) {
-            event.preventDefault();
-            firstElement?.focus();
-          }
-        }
-      });
     </script>
+    <script src="member-auth.js?v=member-flow-20260808"></script>
   </body>
 </html>
