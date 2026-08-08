@@ -1,9 +1,10 @@
 (() => {
   const SESSION_KEY = "semper-cantantes-member-session";
   const ACCOUNT_KEY = "semper-cantantes-demo-account";
+  const LEGACY_DEMO_EMAIL = "cybille@sempercantantes.nl";
   const DEMO_ACCOUNT = {
-    name: "Cybille",
-    email: "cybille@sempercantantes.nl",
+    name: "Sibylle",
+    email: "sibylle@sempercantantes.nl",
     password: "semper1957",
   };
 
@@ -47,6 +48,12 @@
     const session = readStoredValue(SESSION_KEY) || memorySession;
     if (!session || typeof session.name !== "string" || typeof session.email !== "string") {
       return null;
+    }
+    if (session.email === LEGACY_DEMO_EMAIL) {
+      const correctedSession = { name: DEMO_ACCOUNT.name, email: DEMO_ACCOUNT.email };
+      memorySession = correctedSession;
+      storeValue(SESSION_KEY, correctedSession);
+      return correctedSession;
     }
     return session;
   };
@@ -227,7 +234,7 @@
     if (isDemoAccount) {
       finishAuthentication(
         { name: DEMO_ACCOUNT.name, email: DEMO_ACCOUNT.email },
-        "U bent ingelogd. Welkom Cybille.",
+        "U bent ingelogd. Welkom Sibylle.",
         loginMessage
       );
     } else if (isRegisteredAccount) {
@@ -269,7 +276,7 @@
       return;
     }
     if (email === DEMO_ACCOUNT.email) {
-      setAuthMessage(registerMessage, "Dit e-mailadres hoort al bij het demo-account van Cybille.");
+      setAuthMessage(registerMessage, "Dit e-mailadres hoort al bij het demo-account van Sibylle.");
       return;
     }
 
